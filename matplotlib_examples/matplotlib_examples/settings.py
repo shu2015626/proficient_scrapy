@@ -19,7 +19,7 @@ NEWSPIDER_MODULE = 'matplotlib_examples.spiders'
 #USER_AGENT = 'matplotlib_examples (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = True
+ROBOTSTXT_OBEY = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
@@ -64,9 +64,11 @@ ROBOTSTXT_OBEY = True
 
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
+ITEM_PIPELINES = {
 #    'matplotlib_examples.pipelines.MatplotlibExamplesPipeline': 300,
-#}
+#    'scrapy.pipelines.files.FilesPipeline': 1,
+    'matplotlib_examples.pipelines.MyFilesPipeline': 1,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://doc.scrapy.org/en/latest/topics/autothrottle.html
@@ -88,3 +90,8 @@ ROBOTSTXT_OBEY = True
 #HTTPCACHE_DIR = 'httpcache'
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
+
+
+# 文件下载路径
+import os
+FILES_STORE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "examples_src")
